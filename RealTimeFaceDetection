@@ -1,0 +1,13 @@
+clc;close all;
+li=webcam();
+im=snapshot(li);
+
+dete=vision.CascadeObjectDetector('Mouth','MergeThreshold',100);
+pp=imshow(im);
+while true
+    im=snapshot(li);
+    im2=rgb2gray(im);
+    bb=step(dete,im2);
+    im2=insertObjectAnnotation(im,'rectangle',bb,'Mouth');
+    imshow(im2);
+end
